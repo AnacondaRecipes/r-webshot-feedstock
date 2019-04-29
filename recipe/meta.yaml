@@ -1,4 +1,4 @@
-{% set version = '0.5.0' %}
+{% set version = '0.5.1' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -11,12 +11,13 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/webshot_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/webshot/webshot_{{ version }}.tar.gz
-  sha256: f0a1be8b0563d95550569a0620d546a9876d1e279a932e9293e4be57ff0f271f
+  sha256: b9750d206c6fa0f1f16cc212b0a34f4f4bfa916962d2c877f0ee9a33620f4b23
 
 build:
   merge_build_host: True  # [win]
   # If this is a new build for the same version, increment the build number.
   number: 0
+  noarch: generic
 
   # This is required to make R link correctly on Linux.
   rpaths:
@@ -30,6 +31,7 @@ requirements:
 
   host:
     - r-base
+    - r-callr
     - r-jsonlite
     - r-magrittr
     - r-processx
@@ -37,6 +39,7 @@ requirements:
 
   run:
     - r-base
+    - r-callr
     - r-jsonlite
     - r-magrittr
     - r-processx
@@ -59,6 +62,7 @@ about:
   license: GPL-2
   summary: Takes screenshots of web pages, including Shiny applications and R Markdown documents.
   license_family: GPL2
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
@@ -69,23 +73,23 @@ extra:
 
 # Package: webshot
 # Title: Take Screenshots of Web Pages
-# Version: 0.5.0
-# Authors@R: c( person("Winston", "Chang", email = "winston@rstudio.com", role = c("aut", "cre")), person("Yihui", "Xie", role = "ctb"), person("Francois", "Guillem", role = "ctb"), person("Nicolas", "Perriault", role = "ctb", comment = "The CasperJS library") )
+# Version: 0.5.1
+# Authors@R: c( person("Winston", "Chang", email = "winston@rstudio.com", role = c("aut", "cre")), person("Yihui", "Xie", role = "ctb"), person("Francois", "Guillem", role = "ctb"), person("Barret", "Schloerke", role = "ctb"), person("Nicolas", "Perriault", role = "ctb", comment = "The CasperJS library") )
 # Description: Takes screenshots of web pages, including Shiny applications and R Markdown documents.
 # Depends: R (>= 3.0)
-# Imports: magrittr, jsonlite, withr, processx
+# Imports: magrittr, jsonlite, callr
 # Suggests: httpuv, knitr, rmarkdown, shiny
-# VignetteBuilder: knitr
 # License: GPL-2
 # SystemRequirements: PhantomJS (http://phantomjs.org) for taking screenshots, ImageMagick (http://www.imagemagick.org) or GraphicsMagick (http://www.graphicsmagick.org) and OptiPNG (http://optipng.sourceforge.net) for manipulating images.
-# RoxygenNote: 6.0.1.9000
+# RoxygenNote: 6.1.0.9000
 # URL: https://github.com/wch/webshot/
+# BugReports: https://github.com/wch/webshot/issues
 # NeedsCompilation: no
-# Packaged: 2017-11-29 18:23:26 UTC; winston
-# Author: Winston Chang [aut, cre], Yihui Xie [ctb], Francois Guillem [ctb], Nicolas Perriault [ctb] (The CasperJS library)
+# Packaged: 2018-09-28 18:24:56 UTC; winston
+# Author: Winston Chang [aut, cre], Yihui Xie [ctb], Francois Guillem [ctb], Barret Schloerke [ctb], Nicolas Perriault [ctb] (The CasperJS library)
 # Maintainer: Winston Chang <winston@rstudio.com>
 # Repository: CRAN
-# Date/Publication: 2017-11-29 18:55:45 UTC
+# Date/Publication: 2018-09-28 21:40:02 UTC
 
 # See
 # http://docs.continuum.io/conda/build.html for
